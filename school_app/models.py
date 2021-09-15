@@ -44,3 +44,32 @@ class NoticeBoard(models.Model):
     title = models.CharField(max_length=144)
     description = models.TextField()
     document = models.FileField(upload_to='documents/notice_board/')
+
+class Contact(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def save_contact(self):
+        self.save()
+
+    def delete_contact(self):
+        self.delete()
+    
+    @classmethod
+    def update_contact(cls, id ,name,email ,message):
+        update = cls.objects.filter(id = id).update(name = name,email = email,message=message)
+        return update
+
+    @classmethod
+    def get_all_contacts(cls):
+        contacts = cls.objects.all()
+        return contacts
+
+    @classmethod
+    def get_contact_id(cls,id):
+        contact_id = cls.objects.filter(id= id).all()
+        return contact_id
+    
+    def __str__(self):
+        return self.name
