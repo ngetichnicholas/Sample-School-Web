@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from cloudinary.models import CloudinaryField
 from django.core.validators import MaxLengthValidator,MinLengthValidator
+from cloudinary.models import CloudinaryField
+from django.db.models.deletion import SET_NULL
 
 # Create your models here.
 class User(AbstractUser):
@@ -65,12 +67,6 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
-
-class ExamResults(models.Model):
-    exam_name = models.CharField(max_length=144)
-    form = models.CharField(max_length=10,choices=FORM_CHOICES)
-    description = models.TextField()
-    term = models.CharField(max_length=10,choices=TERM_CHOICES)
     
     
     @classmethod
@@ -90,3 +86,16 @@ class ExamResults(models.Model):
     
     def __str__(self):
         return self.name
+class ExamResults(models.Model):
+    exam_name = models.CharField(max_length=144)
+    form = models.CharField(max_length=10,choices=FORM_CHOICES)
+    description = models.TextField()
+    term = models.CharField(max_length=10,choices=TERM_CHOICES)
+
+class Post(models.Model):
+    title = models.CharField(max_length=144)
+    post = models.TextField()
+    image = CloudinaryField('image')
+    date_posted = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
