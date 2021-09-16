@@ -68,7 +68,6 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
     
-    
     @classmethod
     def update_contact(cls, id ,name,email ,message):
         update = cls.objects.filter(id = id).update(name = name,email = email,message=message)
@@ -86,6 +85,7 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.name
+
 class ExamResults(models.Model):
     exam_name = models.CharField(max_length=144)
     form = models.CharField(max_length=10,choices=FORM_CHOICES)
@@ -99,3 +99,9 @@ class Post(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,on_delete=SET_NULL,null=True)
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()

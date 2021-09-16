@@ -1,0 +1,103 @@
+{% load bootstrap4 %}
+{% load static %}
+{% load cloudinary %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Kiproroget High School</title>
+    <meta name="description" content="This is a web application for Kiproroget Secondary School">
+    <meta name="keywords" content="Secondary School, Kiproroget, High School">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="EN">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/parrot_icon.jpg' %}" rel="icon">
+    <link href="{% static 'assets/img/parrot_icon.jpg' %}" rel="apple-touch-icon">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    {% endblock styles %}
+
+
+</head>
+
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <h1><a href="{% url 'admin_dashboard' %}" class="logo">ADMIN-PANEL</a></h1>
+      <ul class="list-unstyled components mb-5">
+        <li class="active">
+          <a href="{% url 'admin_dashboard' %}"><i class="fas fa-home"></i> Dashboard</a>
+        </li>
+        <li class="active">
+          <a href="{% url 'add_post' %}"><span class="fa fa-database"></span> Add Post</a>
+        </li>
+        <li class="">
+          <a style="cursor:unset;" href=""></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="active">
+          <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+        </li>
+
+        {% else %}
+        <li class="active">
+          <a href="{% url 'login' %}"><span class="fa fa-database"></span> Login</a>
+        </li>
+
+        {% endif %}
+      </ul>
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+
+  {% block scripts %}
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  {% endblock scripts %}
+  <script>
+
+    $(document).ready(function () {
+      $("#messages").fadeOut(7000)
+    })
+  </script>
+</body>
+
+</html>
