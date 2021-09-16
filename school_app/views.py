@@ -48,6 +48,7 @@ def signup_view(request):
         if signup_form.is_valid():
             user=signup_form.save()
             user.refresh_from_db()
+            return redirect('login')
     else:
         signup_form = UserSignUpForm()
     return render(request, 'registration/signup.html', {'signup_form': signup_form})

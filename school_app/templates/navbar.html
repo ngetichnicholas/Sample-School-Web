@@ -1,0 +1,21 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top  d-flex justify-content-center align-items-center header-transparent">
+
+  <nav class="nav-menu d-none d-lg-block">
+    <ul>
+      <li class="active"><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="">About</a></li>
+      <li><a href="">Events</a></li>
+      <li><a href="">Notice Board</a></li>
+      <li><a href="">Exams</a></li>
+      <li><a href="">Contact</a></li>
+      {% if request.user.is_authenticated %}
+      <li><a href="{% url 'logout' %}"><span class="lower"> Logout</span></a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}"><span class="lower"> Login </span></a></li>
+      <li><a href="{% url 'register' %}"><span class="lower"> Signup </span></a></li>
+      {% endif %}
+    </ul>
+  </nav><!-- .nav-menu -->
+
+</header><!-- End Header -->
