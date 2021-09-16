@@ -4,3 +4,10 @@
 .lower {
     text-transform: capitalize;
 }
+section {
+    margin-top: 14vh;
+}
+header {
+    background-color: #030306 !important;
+    height: 14vh !important;
+}

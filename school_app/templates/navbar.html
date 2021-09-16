@@ -8,7 +8,7 @@
       <li><a href="">Events</a></li>
       <li><a href="">Notice Board</a></li>
       <li><a href="">Exams</a></li>
-      <li><a href="">Contact</a></li>
+      <li><a href="{% url 'contact' %}">Contact</a></li>
       {% if request.user.is_authenticated %}
       <li><a href="{% url 'logout' %}"><span class="lower"> Logout</span></a></li>
       {% else %}

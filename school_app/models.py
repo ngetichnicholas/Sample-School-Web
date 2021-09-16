@@ -27,6 +27,13 @@ FORM_CHOICES = (
     ('FORM-4','FORM-4'),
 )
 
+TERM_CHOICES = (
+    ('TERM-1','TERM-1'),
+    ('TERM-2','TERM-2'),
+    ('TERM-3','TERM-3'),
+
+)
+
 class Student(models.Model):
     full_name = models.CharField(max_length=144)
     form = models.CharField(max_length=10,choices=FORM_CHOICES)
@@ -55,6 +62,16 @@ class Contact(models.Model):
 
     def delete_contact(self):
         self.delete()
+
+    def __str__(self):
+        return self.name
+
+class ExamResults(models.Model):
+    exam_name = models.CharField(max_length=144)
+    form = models.CharField(max_length=10,choices=FORM_CHOICES)
+    description = models.TextField()
+    term = models.CharField(max_length=10,choices=TERM_CHOICES)
+    
     
     @classmethod
     def update_contact(cls, id ,name,email ,message):
