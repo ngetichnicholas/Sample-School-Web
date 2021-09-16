@@ -73,3 +73,6 @@ def login(request):
       messages.error(request, "Invalid username or password.")
   form = AuthenticationForm()
   return render(request = request,template_name = "registration/login.html",context={"form":form})
+
+
+
