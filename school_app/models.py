@@ -4,6 +4,7 @@ from cloudinary.models import CloudinaryField
 from django.core.validators import MaxLengthValidator,MinLengthValidator
 from cloudinary.models import CloudinaryField
 from django.db.models.deletion import SET_NULL
+from django.db.models.fields.files import ImageField
 
 # Create your models here.
 class User(AbstractUser):
@@ -95,7 +96,7 @@ class ExamResults(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=144)
     post = models.TextField()
-    image = CloudinaryField('image')
+    image = models.ImageField(upload_to='posts/images')
     date_posted = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,on_delete=SET_NULL,null=True)

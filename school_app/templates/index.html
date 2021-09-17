@@ -8,6 +8,23 @@
       <a href="#about" class="btn-scroll scrollto" title="Scroll Down"><i class="bx bx-chevron-down"></i></a>
     </div>
   </section><!-- End Hero -->
-
-
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-md-6">
+            <h3>{{post.title}}</h3>
+            <p>{{post.description}}</p>
+            <img src="{{post.image.url}}" alt="post image">
+            <small>Date posted: {{post.date_posted|date}}</small>
+          </div>
+          {% endfor %}
+        </div>
+        
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
 {% endblock %}

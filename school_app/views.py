@@ -19,7 +19,13 @@ from .email import *
 # Create your views here.
 def index(request):
   current_user = request.user
-  return render(request, 'index.html',{'current_user':current_user})
+  posts = Post.objects.all().order_by('-date_posted')
+  
+  context = {
+    'current_user':current_user,
+    'posts':posts
+    }
+  return render(request, 'index.html',context)
 
 def about(request):
     return render(request,'about.html')

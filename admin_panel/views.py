@@ -6,6 +6,9 @@ from .forms import *
 from django.contrib import messages
 
 # Create your views here.
+def admin_dashboard(request):
+  return render(request,'admin_panel/admin_dashboard.html')
+
 def add_post(request):
   if request.method == 'POST':
     add_post_form = PostForm(request.POST,request.FILES,instance=request.user)
@@ -14,7 +17,7 @@ def add_post(request):
       post.user = request.user
       post.save()
       messages.success(request, f'New post added successfully')
-      return redirect('index')
+      return redirect('admin_dashboard')
 
   else:
     add_post_form = PostForm()
