@@ -11,7 +11,7 @@ def admin_dashboard(request):
 
 def add_post(request):
   if request.method == 'POST':
-    add_post_form = PostForm(request.POST,request.FILES,instance=request.user)
+    add_post_form = PostForm(request.POST,request.FILES)
     if add_post_form.is_valid():
       post = add_post_form.save(commit=False)
       post.user = request.user
